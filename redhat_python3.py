@@ -1,95 +1,144 @@
-import os 
-os.system("tput setaf 3")
-print("\t\t Welcome to the TUI ")
-os.system("tput setaf 7")
-print("\t\t----------------------- ")
-
-print("""
-    press 1: To create a user
-    press 2: To open gedit 
-    press 3: To launch firefox
-    press 4: To install a package
-    press 5: To check IP address
-    press 6: To use python3
-    press 7: To launch the docker container centos
-    press 8: To check the docker images
-    press 9: To use nmap
-    press 10: To Configure web server
-    press 11: To search 
-    press 12:
-    press 13:
-    """)
-print("Enter your choice :", end="")
-ch = int(input())
-
-if(ch==1):
-    print("Enter your username:", end="")
-    user_name = input()
-    os.system("useradd {}".format(user_name))
-
-elif(ch==2):
-    os.system("gedit")
-
-elif(ch==3):
-    os.system("firefox &")
-
-elif(ch==4):
-    print("Enter you package name: ",end="")
-    package_name = input()
-    os.system("dnf install {}".format(package_name))
-
-elif(ch==5):
-    print("Do you have net-tools ?")
-    print("Yes or No:",end="")
-    ans = input()
-    if(ans == "Yes"):
-        os.system("ifconfig")
-    else:
-        os.system("yum install net-tools")
-        os.system("ifconfig")
-
-elif(ch==6):
-    os.system("python3")
+#Option 9 function
+def what_py(x):
+	if x == 1:
+		sys('python3')
+	elif x == 2 :
+		fn=input("Enter file name to start writing code :")
+		sys("gedit {}".format(fn))
+	elif x == 3 :
+		pth = input("Enter name of the file you want to run :")
+		sys("python3 {}".format(pth))
+	elif x == 4 :
+		nm = input ("Enter package name :")
+		sys("pip3 install {}".format(nm))
+	else :
+		print("Invalid input !!!")
+	return
 
 
-elif(ch==7):
-    print("Please enter the container name:", end="")
-    container_name = input()
-    os.system("docker container run -it --name {} centos:7".format(container_name))
+#code for banner and designs
+from os import system as sys
+import getpass
+from termcolor import colored
+print(sys("figlet TEAM PYCODERS"))
+print()
+msg=colored("Developer : Team Pycoders    https://linkedin.com/in/whytedork","red")
+print(sys("cowsay {}".format(msg)))
+print()
 
-elif(ch==8):
-    os.system("docker images")
+#read password from file
+f=open("password.txt",'r')
+password=f.readline()
 
-elif(ch==9):
-    print("Please enter the IP",end="")
-    web_address = input()
-    os.system("nmap {}".format(web_address))
+#password setup
+x=getpass.getpass("Enter Your Password : ")
+if x==password:
+	print(colored("LogIn Successfull !","red"))
+	print()
+else :
+	print(colored("Password is Incorrect !","red"))
 
-elif(ch==10):
-    os.system("dnf install httpd")
-    
-elif(ch==11):
-    print("Enter your requirement",end="")
-    file = input()
-    os.system("locate {}".format(file))
-    
-elif(ch==9):
-    pass    
-    
-elif(ch==9):
-    pass
-    
-elif(ch==9):
-    pass
+print("Where you like to perform the task: local or remote ? ", end="")
+location = input()
+print(location)
 
-else:
-    print("Invalid option")
+if location == 'remote':
+    ip = input("Enter your IP : ")
+
+#menu-bar
+
+if x==password:
+	while True:
+		print("""Enter 1  : to login as root user
+Enter 2  : to see date & time 
+Enter 3  : to open calculator
+Enter 4  : to create new user
+Enter 5  : to install new software or tool
+Enter 6  : to open new terminal 
+Enter 7  : to open text-editor
+Enter 8  : to update whole system
+Enter 9  : to Python operations
+Enter 10 : to scan website using nmap
+Enter 11 : to check ip address
+Enter 12 : to ping
+Enter 13 : to configure web server
+Enter 14 : to create banners
+Enter 15 : to run any command
+Enter 16 : to launch browser
+Enter 17 : to search file or tool
+Enter 18 : to launch the docker container centos
+Enter 19 : to check the docker images
+Enter 20 : to exit
+""")
+		choice =int(input("Enter Your Choice : "))
 
 
+		if(choice==1):
+			sys("sudo bash")
+		elif choice==2:
+			sys("date")
+		elif choice==3:
+			sys("bc")
+		elif choice==4:
+			print("Enter user name : ",end="")
+			create_user=input()
+			sys("useradd {}".format(create_user))
+		elif choice==5:
+			print("Enter software name : ",end="")
+			software_name=input()
+			sys("sudo apt-get install {}".format(software_name))
+		elif choice ==6:
+			sys("gnome-terminal")
+		elif choice ==7:
+			sys("gnome-text-editor")
+		elif choice==8:
+			sys("sudo apt-get update")
+		elif choice==9:
+			print('''What you wanna do : 
+1 :launch python 
+2 :Create or edit a python code 
+3 :Run your python file
+4 :Install a package''')
+			X=int(input("Enter your choice :"))
+			what_py(X)
+		elif choice==10:
+			print("Enter Website or IP : ",end="")
+			website=input()
+			sys("nmap {}".format(website))
+		elif choice==11:
+			sys("ifconfig")
+		elif choice==12:
+			print("Enter Website or IP : ",end="")
+			website=input()
+			sys("ping {}".format(website))
+		elif choice==13:
+			sys("yum install httpd")
+		elif choice==14:
+			print("enter banner name : ",end="")
+			banner_name=input()
+			sys("figlet {}".format(banner_name))
+		elif choice==15:
+			print("enter command : ",end="")
+			new_cmd=input()
+			sys("{}".format(new_cmd))
+		elif choice==16:
+			sys("firefox")
+		elif choice==17:
+			printf("Enter name : ",end="")
+			s_file=input()
+			sys("loacte {}".format(s_file))
+		elif choice==18:
+                        print("Please enter the container name:", end="")
+                        container_name = input()
+                        sys("docker container run -it --name {} centos:7".format(container_name))
+                elif choice==19:
+                        sys("docker images")
+                elif choice==20:
+			sys("exit")
+			print(colored("Thanks For Using","red"))
+			break
+		else :
+			print(colored("Invalid Choice","red"))
 
 
-
-
-
-
-
+	
